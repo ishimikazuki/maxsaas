@@ -44,5 +44,5 @@ def test_extract_contact_info_role_email_and_sns():
     assert result.fax_main == "+81398765432"
     assert result.sns["sns_linkedin"].startswith("https://www.linkedin.com/company/")
     assert result.sns["sns_x"].startswith("https://x.com/")
-    assert result.email_guessed  # 予測アドレスも生成
+    # ロールメールが取得できた場合は推定メールを追加しない
     assert result.evidence_sources

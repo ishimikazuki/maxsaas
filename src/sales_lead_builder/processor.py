@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import logging
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Iterable, List, Optional
 from urllib.parse import urlparse
 
@@ -31,6 +31,11 @@ class ProcessOutcome:
 @dataclass(slots=True)
 class LeadProcessor:
     settings: Settings
+    sheets: SheetsClient = field(init=False, repr=False)
+    search: SearchClient = field(init=False, repr=False)
+    selector: OfficialSiteSelector = field(init=False, repr=False)
+    crawler: SiteCrawler = field(init=False, repr=False)
+    report_generator: Optional[ReportGenerator] = field(init=False, repr=False)
 
     def __post_init__(self) -> None:
         self.sheets = SheetsClient(self.settings)

@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import json
 import logging
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Iterable, List, Optional
 
 from openai import OpenAI, OpenAIError
@@ -16,6 +16,7 @@ logger = logging.getLogger(__name__)
 @dataclass(slots=True)
 class ReportGenerator:
     settings: Settings
+    _client: OpenAI = field(init=False, repr=False)
 
     def __post_init__(self) -> None:
         if not self.settings.openai_api_key:

@@ -3,7 +3,7 @@ from __future__ import annotations
 import logging
 import re
 from collections import deque
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Dict, Iterable, List, Optional, Set
 from urllib.parse import urljoin, urlparse
 
@@ -55,6 +55,7 @@ PHONE_PATTERN = re.compile(r"(?:(?:\+?81[-\s]?)?0[0-9]{1,4}[-‐–―\s]?[0-9]{
 @dataclass(slots=True)
 class PageFetcher:
     settings: Settings
+    session: requests.Session = field(init=False, repr=False)
 
     def __post_init__(self) -> None:
         self.session = requests.Session()

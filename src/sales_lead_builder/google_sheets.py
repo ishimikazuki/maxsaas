@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from typing import Iterable, List, Optional
 
 from google.auth import default
@@ -20,6 +20,8 @@ SHEETS_SCOPES = [
 @dataclass(slots=True)
 class SheetsClient:
     settings: Settings
+    _credentials: object = field(init=False, repr=False)
+    _service: object = field(init=False, repr=False)
 
     def __post_init__(self) -> None:
         self._credentials = self._build_credentials()

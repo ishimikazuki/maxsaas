@@ -9,3 +9,5 @@ venv/
 .idea/
 .vscode/
 .DS_Store
+run.log
+maxsaas-87d5038ec24f.json
